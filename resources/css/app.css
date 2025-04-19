@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .fi-button {
+    @apply bg-gray-600 text-white hover:bg-blue-700;
+  }
+}

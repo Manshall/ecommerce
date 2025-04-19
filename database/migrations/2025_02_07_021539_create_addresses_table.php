@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constained('orders')->cascadeOnDelete();
-            $table->string('frist_name')->nullable();
+            $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('phone')->nullable();
             $table->string('street_addrres')->nullable();
@@ -31,6 +31,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('addresses');
-    }
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->dropColumn('street_address');
+        });
+        }
 };

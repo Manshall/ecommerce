@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductImage;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Product extends Model
 {
-    use Hasfactory;
 
+
+    use HasFactory;
     protected $fillable = [
         'category_id',
         'brand_id',
-        'name'
-        'slug'
-        'images'
+        'name',
+        'slug',
+        'images',
         'description',
         'price',
         'is_active',
@@ -23,18 +27,26 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'images'=> 'array',
+        'images' => 'array',
     ];
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
-   
-    public function brand(){
+
+    public function brand()
+    {
         return $this->belongsTo(Brand::class);
     }
 
-    public function orderitems(){
+    public function orderItems()
+    {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
     }
 }
